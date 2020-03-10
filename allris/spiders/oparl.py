@@ -13,6 +13,8 @@ class OparlSpider(scrapy.Spider):
     object_type = ''
 
     def __init__(self, name=None, **kwargs):
+        if 'domain' in kwargs:
+            self.allowed_domains = [kwargs['domain']]
         if 'since' not in kwargs:
             raise ValueError('Missing required argument: "since". Got arguments: {}'.format(kwargs))
         self.since = datetime.fromisoformat(kwargs['since'])
